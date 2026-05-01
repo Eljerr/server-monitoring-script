@@ -15,4 +15,4 @@ cek_resource() {
   sudo journalctl -u ssh | grep "Failed password" | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort | uniq -c | sort -nr | head -5
 }
 
-cek_resource
+cek_resource | tee -a "audit_repot_$(date +%F_%H-%M).txt"
