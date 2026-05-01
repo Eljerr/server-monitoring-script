@@ -11,6 +11,8 @@ cek_resource() {
   fi
 
   free -h | awk 'NR==2 {print "RAM - Total:", $2 , "| Used:", $3 , "| Available:", $4}'
+
+  sudo journalctl -u ssh | grep "Failed password" | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort | uniq -c | sort -nr | head -5
 }
 
 cek_resource
