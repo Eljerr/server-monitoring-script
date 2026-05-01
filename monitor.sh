@@ -9,6 +9,8 @@ cek_resource() {
   if [[ $diskusage -gt 80 ]]; then
     echo "[ALERT] Disk uang terpakai sudah di atas 80%"
   fi
+
+  free -h | awk 'NR==2 {print "RAM - Total:", $2 , "| Used:", $3 , "| Available:", $4}'
 }
 
 cek_resource
